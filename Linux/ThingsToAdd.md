@@ -5,5 +5,5 @@
   * Weak Passwords
 * PAM files
 * Removing bad Softwares
-* Backdoors
+* Netcat backdoors
 
