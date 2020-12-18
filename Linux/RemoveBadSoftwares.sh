@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# This only has hacking tools, for games remove them using terminal
 
 apt-get purge netcat -y -qq
 apt-get purge netcat-openbsd -y -qq
@@ -63,7 +64,6 @@ apt-get purge irpas -y -qq
 echo "IRPAS has been removed."
 
 
-echo 'Are there any hacking tools shown? (not counting libcrack2:amd64 or cracklib-runtime)'
 dpkg -l | egrep "crack|hack" >> ~/Desktop/Script.log
 
 apt-get purge logkeys -y -qq
