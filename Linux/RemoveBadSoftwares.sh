@@ -22,6 +22,7 @@ echo "John the Ripper has been removed."
 apt-get purge hydra -y -qq
 apt-get purge hydra-gtk -y -qq
 
+
 echo "Hydra has been removed."
 
 apt-get purge aircrack-ng -y -qq
@@ -113,5 +114,9 @@ echo "VNC has been removed."
 apt-get purge snmp -y -qq
 echo "SNMP has been removed."
 
+apt-get purge nmap -y -qq
+apt-get purge zenmap -y -qq
+echo "Nmap has been removed"
 
-# NOT DONE, NEED TO ADD NMAP AND MORE SOFTWARES!!
+
+# NOT DONE, NEED TO ADD MORE SOFTWARES!!
