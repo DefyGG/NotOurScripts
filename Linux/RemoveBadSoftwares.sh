@@ -118,5 +118,11 @@ apt-get purge nmap -y -qq
 apt-get purge zenmap -y -qq
 echo "Nmap has been removed"
 
+apt-get remove --purge wireshark
+echo "Wireshark has been removed"
+
+# Keep this line at the end always
+apt-get autoremove
+echo "Everything is cleaned up"
 
 # NOT DONE, NEED TO ADD MORE SOFTWARES!!
