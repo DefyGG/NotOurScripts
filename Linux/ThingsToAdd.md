@@ -9,6 +9,6 @@
 * Remove media files
 * Update all softwares and make their settings correct
 * ~~Removing bad Softwares~~
-* ~~Netcat backdoors~~
+* Netcat backdoors
 
 
