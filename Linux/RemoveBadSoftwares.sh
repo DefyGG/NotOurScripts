@@ -23,7 +23,6 @@ echo "John the Ripper has been removed."
 apt-get purge hydra -y -qq
 apt-get purge hydra-gtk -y -qq
 
-
 echo "Hydra has been removed."
 
 apt-get purge aircrack-ng -y -qq
@@ -83,10 +82,6 @@ apt-get purge portmap -y -qq
 apt-get purge rpcbind -y -qq
 apt-get purge autofs -y -qq
 echo "NFS has been removed."
-
-apt-get purge nginx -y -qq
-apt-get purge nginx-common -y -qq
-echo "NGINX has been removed."
 
 apt-get purge inetd -y -qq
 apt-get purge openbsd-inetd -y -qq
