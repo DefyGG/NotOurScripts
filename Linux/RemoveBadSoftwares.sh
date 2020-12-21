@@ -125,4 +125,5 @@ echo "Wireshark has been removed"
 apt-get autoremove
 echo "Everything is cleaned up"
 
+clear
 # NOT DONE, NEED TO ADD MORE SOFTWARES!!
