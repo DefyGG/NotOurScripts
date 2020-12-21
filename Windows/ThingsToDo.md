@@ -1,6 +1,6 @@
 Remove all redudencies in code
 
-*Fixing the users section
+* Fixing the users section
   * Admins who are not
   * Users who are not
   * Weak Passwords
