@@ -4,6 +4,6 @@
   * Users who are not
   * Weak Passwords
 * PAM files
-* Removing bad Softwares
-* Netcat backdoors
+* ~~Removing bad Softwares~~
+* ~~Netcat backdoors~~
 
