@@ -10,5 +10,5 @@
 * Update all softwares and make their settings correct
 * ~~Removing bad Softwares~~
 * Netcat backdoors
-
+* Cron jobs?
 
