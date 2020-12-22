@@ -1,10 +1,7 @@
-Remove all redudencies in code
+Remove all redudencies in code (That's really it)
 
-* Fixing the users section
-  * Admins who are not
-  * Users who are not
-  * Weak Passwords
-* Password Files
-* Removing bad Softwares
-* Backdoors
+* Remember to Check CyberPatriots Checklist with Code
 
+--------------------------------------------------------
+* Code Test Results
+  * First Test Result: 
