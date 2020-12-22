@@ -11,4 +11,5 @@
 * ~~Removing bad Softwares~~
 * Netcat backdoors
 * Cron jobs?
+* Make root password secure
 
