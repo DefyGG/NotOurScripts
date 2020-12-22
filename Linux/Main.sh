@@ -8,3 +8,9 @@ echo "Bad softwares have been removed"
 
 ./Users.sh
 echo "Users have been fixed"
+
+./RemoveBadFiles.sh
+echo "Bad files have been removed"
+
+echo "Done!"
+clear
