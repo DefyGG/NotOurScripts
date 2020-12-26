@@ -3,6 +3,3 @@
 # NotOurScripts
 This is not for any competition involving securing vm's so leave. This is only for the cool kids...ok?
 
-Daniel M - Windows
-Neel B - Linux Debian
-Sumedh V - Linux Ubuntu
