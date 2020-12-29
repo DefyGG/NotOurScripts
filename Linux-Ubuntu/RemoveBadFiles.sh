@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Running remove bad files program"
+
 find / -name "*.midi" -type f >> ~/Desktop/Script.log
 find / -name "*.mid" -type f >> ~/Desktop/Script.log
 find / -name "*.mod" -type f >> ~/Desktop/Script.log
