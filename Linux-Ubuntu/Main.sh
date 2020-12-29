@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ] ;
+	then echo "Run as Root"
+	exit
+  
+
 ./PAM.sh
 echo "PAM files script has been ran"
 
