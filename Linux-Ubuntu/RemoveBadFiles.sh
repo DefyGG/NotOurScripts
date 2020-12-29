@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Someone check this, I think I am done with this
+
 echo "Running remove bad files program (specifically media files)"
 
 find / -name "*.midi" -type f -delete
