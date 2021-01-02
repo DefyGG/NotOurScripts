@@ -92,5 +92,14 @@ done
 echo "Finished changing users"
 
 
+#Remove unwanted alias
+echo "Bad Aliases:" > AliasesAndFunctions.txt
+for i in $(echo $(alias | grep -vi -e "alias egrep='egrep --color=auto'" -e "alias fgrep='fgrep --color=auto'" -e "alias grep='grep --color=auto'" -e "alias l='ls -CF'" -e "alias la='ls -A'" -e "alias ll='ls -alF'" -e "alias ls='ls --color=auto'" | cut -f 1 -d=) | cut -f 2 -d ' ') ; do 
+	echo $(alias | grep -e $i)  >> AliasesAndFunctions.txt;
+	unalias $i;
+done
+echo "Finished unaliasing"
+
+
 echo "Done with users"
 clear
