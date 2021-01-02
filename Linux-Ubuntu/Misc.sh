@@ -235,8 +235,28 @@ echo "Finished restarting caches"
 service xinetd reload
 
 
+cp /etc/hosts hosts
+echo 127.0.0.1	localhost > /etc/hosts
+echo 127.0.1.1	ubuntu  >> /etc/hosts
+
+echo ::1     ip6-localhost ip6-loopback >> /etc/hosts
+echo fe00::0 ip6-localnet >> /etc/hosts
+echo ff00::0 ip6-mcastprefix >> /etc/hosts
+echo ff02::1 ip6-allnodes >> /etc/hosts
+echo ff02::2 ip6-allrouters >> /etc/hosts
+
+/bin/rm -f /etc/cron.deny
+/bin/rm -f /etc/at.deny
+echo "root" > /etc/cron.allow
+echo "root" > /etc/at.allow
+/bin/chown root:root /etc/cron.allow
+/bin/chown root:root /etc/at.allow
+/bin/chmod 400 /etc/at.allow
+/bin/chmod 400 /etc/cron.allow
+echo "Finished creating cron/at.allow and deleting cron/at.deny"
 
 
 
+echo "Finished Misc things"
 
 clear
