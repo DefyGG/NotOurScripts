@@ -101,5 +101,16 @@ done
 echo "Finished unaliasing"
 
 
+for i in $(grep ":0:" /etc/passwd | grep -v -e "root:x" -e "#"); do
+	name=$(echo $i | cut -f1 -d: );
+	echo $name
+	#(deluser $name --remove-all-files  >> RemovingUsers.txt 2>&1) &    #Doesn’t work, as it fails and if you force it then it deletes root
+	lineNumber=$(grep -in  -e $i /etc/passwd | cut -d: -f 1);
+	sed -i '/'"$lineNumber"'/s/^/#/' /etc/passwd
+	#These two actually find the line where the not root uid 0 is, and then comment that line out
+	gnome-terminal -e "bash -c \"( echo "WARNING: THERE IS A HIDDEN ROOT USER ON THE COMPUTER. PLEASE RECTIFY THE SITUATION IMMEDIATELY."; exec bash )\"" & disown; sleep 2; 
+	#This disown causes the terminal created to not be associated with the original terminal so when the original is closed it does not also close this one.
+done
+
 echo "Done with users"
 clear
