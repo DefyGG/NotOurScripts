@@ -18,6 +18,20 @@ sysctl -p
 
 echo "Secured network"
 
+# Netcat backdoors
+a=0;
+for i in $(netstat -ntlup | grep -e "netcat" -e "nc" -e "ncat"); do
+	if [[ $(echo $i | grep -c -e "/") -ne 0  ]]; then
+		badPID=$(ps -ef | pgrep $( echo $i  | cut -f2 -d'/'));
+		realPath=$(ls -la /proc/$badPID/exe | cut -f2 -d'>' | cut -f2 -d' ');
+		cp $realPath $a
+		echo "$realPath $a" >> Warnings.txt;
+		a=$((a+1));
+		rm $realPath;
+		kill $badPID;
+	fi
+done
+
 unalias -a
 usermod -L root
 chmod 640 .bash_history
