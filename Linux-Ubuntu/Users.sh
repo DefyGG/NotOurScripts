@@ -1,2 +1,3 @@
 #!/bin/bash
 
+# DO THIS MANUALLY IN THE COMP
