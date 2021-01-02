@@ -6,6 +6,16 @@ echo "net.ipv6.conf.all.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.conf
 echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward
 echo "nospoof on" | sudo tee -a /etc/host.conf
 
+sysctl -w net.ipv4.tcp_syncookies=1
+sysctl -w net.ipv4.ip_forward=0
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.accept_redirects=0
+sysctl -w net.ipv4.conf.default.accept_redirects=0
+sysctl -w net.ipv4.conf.all.secure_redirects=0
+sysctl -w net.ipv4.conf.default.secure_redirects=0
+sysctl -p
+
 echo "Secured network"
 
 unalias -a
@@ -131,6 +141,58 @@ fi
 
 clear
 
+cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1 > /tmp/listofusers
+echo root >> /tmp/listofusers
+
+#Replace sources.list with safe reference file (For Ubuntu 14 Only)
+cat $PWDthi/referenceFiles/sources.list > /etc/apt/sources.list
+apt-get update
+
+#Replace lightdm.conf with safe reference file
+cat $PWDthi/referenceFiles/lightdm.conf > /etc/lightdm/lightdm.conf
+
+#Replace sshd_config with safe reference file
+cat $PWDthi/referenceFiles/sshd_config > /etc/ssh/sshd_config
+/usr/sbin/sshd -t
+systemctl restart sshd.service
+
+#/etc/rc.local should be empty except for 'exit 0'
+echo 'exit 0' > /etc/rc.local
+
+nano /etc/resolv.conf #make sure if safe, use 8.8.8.8 for name server
+nano /etc/hosts #make sure is not redirecting
+visudo #make sure sudoers file is clean. There should be no "NOPASSWD"
+nano /tmp/listofusers #No unauthorized users
+
+# Netcat backdoors
+lsof -i -n -P
+netstat -tulpn
+
+#chkrootkit
+echo "\033[1;31mStarting CHKROOTKIT scan...\033[0m\n"
+chkrootkit -q
+
+
+#Rkhunter
+echo "\033[1;31mStarting RKHUNTER scan...\033[0m\n"
+rkhunter --update
+rkhunter --propupd #Run this once at install
+rkhunter -c --enable all --disable none
+
+
+#Lynis
+echo "\033[1;31mStarting LYNIS scan...\033[0m\n"
+cd /usr/share/lynis/
+/usr/share/lynis/lynis update info
+/usr/share/lynis/lynis audit system
+
+
+#ClamAV
+echo "\033[1;31mStarting CLAMAV scan...\033[0m\n"
+systemctl stop clamav-freshclam
+freshclam --stdout
+systemctl start clamav-freshclam
+clamscan -r -i --stdout --exclude-dir="^/sys" /
 
 
 clear
