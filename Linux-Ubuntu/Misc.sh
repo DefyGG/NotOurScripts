@@ -194,5 +194,35 @@ freshclam --stdout
 systemctl start clamav-freshclam
 clamscan -r -i --stdout --exclude-dir="^/sys" /
 
+#goes and replaces the /etc/sudoers file with a clean one
+if [[ $(ls -la /etc | grep -ic sudoers) -ne 0 ]]; then
+	echo "Replacing /etc/sudoers" >> WorkProperly.txt
+cp /etc/sudoers /etc/.sudoers
+
+for i in $(ls /etc/sudoers.d | grep -vi -e "\." -e "README" -e "total") ; do
+	#Badname=$(ls /etc/sudoers.d | grep -v -e "\." -e "README" -e "total");	used to work when there also a -c, but would flip if nothing there
+	cp /etc/sudoers.d/$i $(pwd)/$i		#/etc/sudoers.d/$Badname $(pwd)/$Badname;
+	rm /etc/sudoers.d/$i			#/etc/sudoers.d/$Badname;
+	echo $i " was a found file that shouldn't be there, copied and removed it" >> WorkProperly.txt
+done
+
+/etc/init.d/dnsmasq restart > cacheClearing.txt
+/etc/init.d/nscd -i hosts >> cacheClearing.txt #some others said reload or restart would do the same thing
+/etc/init.d/nscd reload >> cacheClearing.txt
+rndc flush >> cacheClearing.txt	#this clears the cache when bind9 is installed
+echo "Clearing computer cache:" >> cacheClearing.txt
+#These next few clear out the cache on the computer
+free >> cacheClearing.txt
+sync && echo 3 > /proc/sys/vm/drop_caches
+#echoing the 3 in drop_caches tells the system to ___________________
+echo "After" >> cacheClearing.txt
+free >> cacheClearing.txt
+echo "Finished restarting caches"
+service xinetd reload
+
+
+
+
+
 
 clear
