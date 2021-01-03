@@ -1,6 +1,11 @@
 #!/bin/bash
 
-#Lock people from logging straight into the root account
+# Make sure to go through the readme and make the users correct and make sure to change the paswords of all admins
+# basically what you normally do
+
+yes "CyberPatriots2020" | passwd
+echo "Finished with changing root password"
+
 passwd -l root
 echo "Finished locking the root account"
 
@@ -17,9 +22,6 @@ chmod 440 /etc/sudoers
 chmod 640 /etc/shadow
 chown root:root /etc/shadow
 echo "Finished changing permissions"
-
-yes "CyberPatriots2020" | passwd
-echo "Finished with changing root password"
 
 #Remove unwanted alias
 echo "Bad Aliases:" > AliasesAndFunctions.txt
