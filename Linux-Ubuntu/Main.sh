@@ -3,6 +3,8 @@
 if [ "$EUID" -ne 0 ] ;
 	then echo "Run as Root"
 	exit
+fi	
+
 apt-get install rkhunter tree debsums libpam-cracklib chkrootkit clamav lynis 
 
 echo "Starting misc. things now"
