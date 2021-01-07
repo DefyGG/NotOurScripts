@@ -3,6 +3,11 @@
 # Make sure to go through the readme and make the users correct and make sure to change the paswords of all admins
 # basically what you normally do
 
+unalias -a
+usermod -L root
+chmod 640 .bash_history
+chmod 604 /etc/shadow
+
 yes "CyberPatriots2020" | passwd
 echo "Finished with changing root password"
 
@@ -29,6 +34,8 @@ for i in $(echo $(alias | grep -vi -e "alias egrep='egrep --color=auto'" -e "ali
 	echo $(alias | grep -e $i)  >> AliasesAndFunctions.txt;
 	unalias $i;
 done
+
+
 echo "Finished unaliasing"
 
 
