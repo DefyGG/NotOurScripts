@@ -32,11 +32,6 @@ for i in $(netstat -ntlup | grep -e "netcat" -e "nc" -e "ncat"); do
 	fi
 done
 
-unalias -a
-usermod -L root
-chmod 640 .bash_history
-chmod 604 /etc/shadow
-
 cp /etc/rc.local ~/Desktop/backups/
 echo > /etc/rc.local
 echo 'exit 0' >> /etc/rc.local
@@ -172,11 +167,6 @@ systemctl restart sshd.service
 
 #/etc/rc.local should be empty except for 'exit 0'
 echo 'exit 0' > /etc/rc.local
-
-nano /etc/resolv.conf #make sure if safe, use 8.8.8.8 for name server
-nano /etc/hosts #make sure is not redirecting
-visudo #make sure sudoers file is clean. There should be no "NOPASSWD"
-nano /tmp/listofusers #No unauthorized users
 
 # Netcat backdoors
 lsof -i -n -P
