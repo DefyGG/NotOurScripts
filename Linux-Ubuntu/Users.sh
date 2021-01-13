@@ -11,8 +11,7 @@ chmod 604 /etc/shadow
 
 passwd -l root
 echo "Finished locking the root account"
-yes "CyberPatriots2020" | passwd
-echo "Finished with changing root password"
+# CHANGE ROOT PASSWORD ON YOUR OWN, THIS CODE DOESN'T WORK
 
 
 #Change the ownership and permissions of files that could commonly be exploited otherwise
