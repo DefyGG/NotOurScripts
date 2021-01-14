@@ -8,11 +8,11 @@ usermod -L root
 chmod 640 .bash_history
 chmod 604 /etc/shadow
 
-yes "CyberPatriots2020" | passwd
-echo "Finished with changing root password"
 
 passwd -l root
 echo "Finished locking the root account"
+# CHANGE ROOT PASSWORD ON YOUR OWN, THIS CODE DOESN'T WORK
+
 
 #Change the ownership and permissions of files that could commonly be exploited otherwise
 chown root:root /etc/securetty
